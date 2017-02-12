@@ -1,0 +1,42 @@
+#game{ 
+	
+	background-image: url("../images/background.jpg");
+ 
+ }
+
+.jumbotron{
+
+	background-color: black;
+
+}
+
+#jumbo{
+
+	color: grey;
+	font-family: 'Special Elite', cursive;
+
+}
+
+#row1{
+
+	height: 100px;
+}
+
+#row2{
+
+	height: 500px;
+}
+
+ p{
+	
+	color: black;
+	font-family: 'Goudy Bookletter 1911', serif;
+	line-height: 15px;
+	font-size: large;
+ }
+
+#img3 {
+
+	size: 200px 200px 200px 200px;
+}
+
