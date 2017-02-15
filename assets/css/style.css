@@ -17,14 +17,23 @@
 
 }
 
+#title{
+
+	color: grey;
+	font-family: 'Special Elite', cursive;
+	font-size: 100px;
+	line-height: 100px;
+	padding-top: 100px;
+}
+
 #row1{
 
-	height: 100px;
+	height: 250px;
 }
 
 #row2{
 
-	height: 500px;
+	height: 600px;
 }
 
  p{
@@ -40,3 +49,8 @@
 	size: 200px 200px 200px 200px;
 }
 
+#img2 {
+
+	height: 200px;
+	width: 200px;
+}
