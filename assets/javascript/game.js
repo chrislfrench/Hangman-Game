@@ -18,17 +18,21 @@ var gameObject = {
 	loseCount: 0,
 	winCount:0,
 
+	PicArray: ["./assets/images/image1.jpg", "./assets/images/image2.jpg", "/assets/images/image3.jpg"],
+	randomPic: "",
+	ScaryPics:[],
+
 	generateWord: function(){
-		//Generate a random number from 0-8
+		//This generates a random number from 1 to 9. 
 		var random_num = Math.random() * 9;
 		random_num = Math.floor(random_num);
 
-		//Assign randomWord to a word from the array whose index was chosen randomly.
+		//Assign randomWord to a word from the array whose index number was chosen by the function above.
 		//Split the string into an array containing the individual letters of the randomly chosen word
 		this.randomWord = this.wordsArray[random_num];
 		this.scaryLetters = this.randomWord.split("");
 
-		//Shows that a randomly chosen band name was converted into an array containing each of its letters.
+		//Shows that a randomly chosen scary word was converted into an array containing each of its letters.
 		console.log(this.randomWord + " " + this.scaryLetters);
 
 		//Since this function will only run on a win/loss, reset the guesses arrays
@@ -37,6 +41,17 @@ var gameObject = {
 		this.correctGuesses = [];
 		this.correctGuessesInOrder = [];
 		this.guessesRemaining = 15;
+	},
+	
+	generatePic: function(){
+
+		// This generates a picture from 1 to 3. 
+		var random_pic = math.random() * 3;
+		random_pic = math.floor(random_pic);
+
+		this.randomPic = this.PicArray[random_pic];
+
+
 	},
 
 	checkRepeat: function(){
@@ -61,8 +76,8 @@ var gameObject = {
 	checkMatch: function(){
 		var matchCounter = 0;
 
-		//Loop for the band names length amount of times.
-		//If the guessed letter is equal to the the bands letter at a given index, the counter variable counts up one.
+		//Loop for the scary words length amount of times.
+		//If the guessed letter is equal to the the scary words letter at a given index, the counter variable counts up one.
 		for (var i=0; i < this.scaryLetters.length; i++){
 			if (this.currentLetter == this.scaryLetters[i]){
 				matchCounter++;
@@ -95,24 +110,24 @@ var gameObject = {
 	},
 	revealScary: function(){
 		//If there are no correctGuesses,
-		//For the number of letters in the bands name, fill the displayed guesses with an underscore.
+		//For the number of letters in the scary words, fill the displayed guesses with an underscore.
 		if (this.correctGuesses.length == 0){
 			for (var i =0; i<this.scaryLetters.length; i++){
 				this.correctGuessesInOrder[i] = "_";
 			}
 		}
 		else {
-			//For the length of the bands name,
+			//For the length of the scary word name,
 			for (var i=0; i<this.scaryLetters.length; i++){
-				//If the displayed guess is not the same as bandletters at index i,
+				//If the displayed guess is not the same as scary letters at index i,
 				if (this.correctGuessesInOrder[i] != this.scaryLetters[i]){
 					//Loop for correctGuesses length number of times,
 					for (var j=0; j<this.correctGuesses.length; j++){
-						//If the correctGuesses at j is equal to bandLetters at i, the displayedGuess becomes the bandletter at index i
+						//If the correctGuesses at j is equal to scary letters at i, the displayedGuess becomes the scary word letter at index i
 						if (this.correctGuesses[j] == this.scaryLetters[i]){
 							this.correctGuessesInOrder[i] = this.scaryLetters[i];
 						}
-						//Otherwise the displayedGuess at index i (corresponding to the band letter's indexes) becomes an underscore.
+						//Otherwise the displayedGuess at index i (corresponding to the scary letter's indexes) becomes an underscore.
 						else {
 							this.correctGuessesInOrder[i] = "_";
 						}
@@ -125,19 +140,20 @@ var gameObject = {
 		document.getElementById("num-wins").innerHTML = ("Wins: " + this.winCount + "  " + "Losses: " + this.loseCount);
 		document.getElementById("letters-guessed").innerHTML = this.incorrectGuesses;
 		document.getElementById("guesses-remaining").innerHTML = this.guessesRemaining;
+		document.getElementById("scaryPicture").innerHTML = this.scaryPics;
 	},
 	checkProgress: function(){
 		var counter = 0;
 
-		//Loop a number of times equal to the length of the band name. 
-		//If a guess is equal to the the band letter at the same index, add 1 to the counter.
+		//Loop a number of times equal to the length of the scary word. 
+		//If a guess is equal to the the scary letter at the same index, add 1 to the counter.
 		for (var i=0; i<this.scaryLetters.length; i++){
 			if (this.correctGuessesInOrder[i] == this.scaryLetters[i]){
 				counter++;
 			}
 		}
 
-		//If the counter is the length of the band name, the user has won.
+		//If the counter is the length of the scary word, the user has won.
 		if (counter == this.scaryLetters.length){
 			alert("You win");
 			this.winCount++;
@@ -177,7 +193,7 @@ document.onkeyup = function(q) {
 
 
 	//Checks to see if the letter has been typed before.
-	//Checks to see if the letter matches with one in the band name.
+	//Checks to see if the letter matches with one in the scary word.
 	gameObject.checkRepeat();
 	gameObject.checkMatch();
 
@@ -189,7 +205,7 @@ document.onkeyup = function(q) {
 	console.log("Incorrect Guesses: " + gameObject.incorrectGuesses);
 	console.log("Guesses Remaining:" + gameObject.guessesRemaining);
 
-	//Reveals the band name as it is being guessed.
+	//Reveals the sacry word as it is being guessed.
 	gameObject.revealScary();
 	console.log(gameObject.correctGuessesInOrder);
 
